@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="content-wrapper">
         <div class="container-fluid">
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ path('home_index') }}">Home</a>
+                </li>
                 <li class="breadcrumb-item">
                     <a href="{{ path('employer_index') }}">Employer</a>
                 </li>
@@ -48,6 +50,5 @@
             </div>
             <a href="{{ path('employer_new') }}" class="btn btn-primary">new employer</a>
         </div>
-    </div>
 
 {% endblock %}

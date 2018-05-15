@@ -1,9 +1,4 @@
 {% trans_default_domain 'FOSUserBundle' %}
-
-{% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
-
 <div class="container">
     <div class="card card-login mx-auto mt-5">
         <form action="{{ path("fos_user_security_check") }}" method="post">
@@ -11,24 +6,29 @@
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
             {% endif %}
 
-            <label for="username">{{ 'security.login.username'|trans }}</label>
-            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />
+            <label for="username">{{ 'Username'|trans }}</label>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" /><br/>
 
-            <label for="password">{{ 'security.login.password'|trans }}</label>
+            <label for="password">{{ 'Password'|trans }}</label>
             <input type="password" id="password" name="_password" required="required" autocomplete="current-password" /> <br/>
 
 
-        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-            <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+            <label for="remember_me">{{ 'Se souvenir'|trans }}</label><br/>
 
-            <input  class="btn btn-primary btn-block" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+            <input  class="btn btn-primary btn-block" type="submit" id="_submit" name="_submit" value="{{ 'Se connecter'|trans }}" />
         </form>
-            <div class="text-center">
-                <a class="d-block small mt-3" href="register.html">Register an Account</a>
-            </div>
+        <div class="text-center">
+            <a class="d-block small mt-3" href="register.html">Register an Account</a>
         </div>
     </div>
 </div>
+</div>
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+
+
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
