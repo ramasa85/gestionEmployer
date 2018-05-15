@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ path('employer_index') }}">Employer</a>
+                </li>
+                <li class="breadcrumb-item active">liste</li>
+            </ol>
+            <!-- Example DataTables Card-->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fa fa-table"></i> La liste des employers</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>Nomemp</th>
+                                <th>Prenomemp</th>
+                                <th>Telephone</th>
+                                <th>Departement</th>
+                                <th>Utilisateur</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for employer in employers %}
+                                <tr>
+                                    <td>{{ employer.nomEmp }}</td>
+                                    <td>{{ employer.prenomEmp }}</td>
+                                    <td>{{ employer.telephone }}</td>
+                                    <td>{{ employer.departement }}</td>
+                                    <td>{{ employer.utilisateur }}</td>
+                                    <td>
+                                        <a href="{{ path('employer_show', { 'id': employer.id }) }}" class="btn btn-info">show</a>
+                                        <a href="{{ path('employer_edit', { 'id': employer.id }) }}" class="btn btn-warning">edit</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <a href="{{ path('employer_new') }}" class="btn btn-primary">new employer</a>
+        </div>
+    </div>
+
+{% endblock %}

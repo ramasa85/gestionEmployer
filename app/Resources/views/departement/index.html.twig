@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Departement</a>
+                </li>
+                <li class="breadcrumb-item active">liste</li>
+            </ol>
+            <!-- Example DataTables Card-->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fa fa-table"></i> La liste des departements</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>Departement</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for departement in departements %}
+                                <tr>
+                                    <td>{{ departement.nomDep }}</td>
+                                    <td>
+                                        <a href="{{ path('departement_show', { 'id': departement.id }) }}" class="btn btn-info">show</a>
+                                        <a href="{{ path('departement_edit', {  'id': departement.id }) }}" class="btn btn-warning">edit</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <a href="{{ path('departement_new') }}" class="btn btn-primary">new departement</a>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        <div class="container">
+            <div class="card card-login mx-auto mt-5">
+                <div class="card-header">New employer</div>
+                <div class="card-body">
+                    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                    <div class="form-group">
+                        {# Génération du label. #}
+                        {{ form_label(form.nomDep, "Non departement", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.nomDep, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <input type="submit" value="Ajouter" class="btn btn-primary btn-block" />
+                    {{ form_end(form) }}
+                </div>
+            </div>
+            <a href="{{ path('departement_index') }}" class="btn btn-info">Back to the list</a>
+        </div>
+        <!-- Bootstrap core JavaScript-->
+        <script src="{{ asset('templates/vendor/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('templates/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="{{ asset('templates/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+{% endblock %}

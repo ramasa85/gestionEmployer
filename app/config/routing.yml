@@ -1,0 +1,16 @@
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+user:
+        resource: "@UserBundle/Controller/"
+        type:     annotation
+        prefix:   /
+employer:
+    resource: "@EmployerBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+

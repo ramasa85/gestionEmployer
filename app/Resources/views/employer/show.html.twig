@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Employer</a>
+                </li>
+                <li class="breadcrumb-item active">show</li>
+            </ol>
+            <!-- Example DataTables Card-->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fa fa-table"></i>employer</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <tbody>
+                            <tr>
+                                <th>Id</th>
+                                <td>{{ employer.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Nomemp</th>
+                                <td>{{ employer.nomEmp }}</td>
+                            </tr>
+                            <tr>
+                                <th>Prenomemp</th>
+                                <td>{{ employer.prenomEmp }}</td>
+                            </tr>
+                            <tr>
+                                <th>Telephone</th>
+                                <td>{{ employer.telephone }}</td>
+                            </tr>
+                            <tr>
+                                <th>Departement</th>
+                                <td>
+                                    {{ employer.departement}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Utilisateur</th>
+                                <td>{{ employer.utilisateur}}</td>
+                            </tr>
+                            <tr>
+                                <th>Action</th>
+                                <td><a href="{{ path('employer_edit', { 'id': employer.id }) }}" class="btn btn-warning">Edit</a>
+                                <a href="{{ path('employer_index') }}" class="btn btn-primary">Back</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {{ form_start(delete_form) }}
+            <input type="submit" value="Delete" class="btn btn-danger">
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+
+{% endblock %}

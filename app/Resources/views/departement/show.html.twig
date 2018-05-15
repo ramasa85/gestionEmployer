@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Departement</a>
+                </li>
+                <li class="breadcrumb-item active">show</li>
+            </ol>
+            <!-- Example DataTables Card-->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fa fa-table"></i>departement</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <tbody>
+                            <tr>
+                                <th>Departement</th>
+                                <td>
+                                    {{ departement.nomDep }}
+                                    <a href="{{ path('departement_edit', { 'id': departement.id }) }}" class="btn btn-warning">Edit</a>
+                                    <a href="{{ path('departement_index') }}" class="btn btn-primary">Back</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {{ form_start(delete_form) }}
+            <input type="submit" value="Delete" class="btn btn-danger">
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+
+    </ul>
+{% endblock %}

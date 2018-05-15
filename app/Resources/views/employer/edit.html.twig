@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="card card-login mx-auto mt-5">
+            <div class="card-header">Modifier un employer</div>
+            <div class="card-body">
+                {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'}}) }}
+                <div class="form-group">
+                    {# Génération du label. #}
+                    {{ form_label(edit_form.nomEmp, "Nom employer", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+                    {# Génération de l'input. #}
+                    {{ form_widget(edit_form.nomEmp, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {# Génération du label. #}
+                    {{ form_label(edit_form.prenomEmp, "Prenom employer", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+                    {# Génération de l'input. #}
+                    {{ form_widget(edit_form.prenomEmp, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {# Génération du label. #}
+                    {{ form_label(edit_form.telephone, "Telephone", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+                    {# Génération de l'input. #}
+                    {{ form_widget(edit_form.telephone, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {# Génération du label. #}
+                    {{ form_label(edit_form.departement, "Departement", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+                    {# Génération de l'input. #}
+                    {{ form_widget(edit_form.departement, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {# Génération du label. #}
+                    {{ form_label(edit_form.utilisateur, "Utilisateur", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+                    {# Génération de l'input. #}
+                    {{ form_widget(edit_form.utilisateur, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <input type="submit" value="Modifier" class="btn btn-primary btn-block" />
+                {{ form_end(edit_form) }}
+            </div>
+        </div>
+        <a href="{{ path('employer_index') }}" class="btn btn-info">Back to the list</a>
+        {{ form_start(delete_form) }}
+        <input type="submit" value="Delete" class="btn btn-danger">
+        {{ form_end(delete_form) }}
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('templates/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('templates/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('templates/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+{% endblock %}

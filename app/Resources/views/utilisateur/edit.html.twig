@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="card card-login mx-auto mt-5">
+            <div class="card-header">Modifier un Utilisateur</div>
+            <div class="card-body">
+                {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'}}) }}
+                <div class="form-group">
+                    {# Génération du label. #}
+                    {{ form_label(edit_form.nomUser, "Nom", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+                    {# Génération de l'input. #}
+                    {{ form_widget(edit_form.nomUser, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {# Génération du label. #}
+                    {{ form_label(edit_form.prenomUser, "Prenom", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+                    {# Génération de l'input. #}
+                    {{ form_widget(edit_form.prenomUser, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {# Génération du label. #}
+                    {{ form_label(edit_form.login, "Login", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+                    {# Génération de l'input. #}
+                    {{ form_widget(edit_form.login, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {# Génération du label. #}
+                    {{ form_label(edit_form.password, "Password", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+                    {# Génération de l'input. #}
+                    {{ form_widget(edit_form.password, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <input type="submit" value="Modifier" class="btn btn-primary btn-block" />
+                {{ form_end(edit_form) }}
+            </div>
+        </div>
+        <a href="{{ path('utilisateur_index') }}" class="btn btn-info">Back to the list</a>
+        {{ form_start(delete_form) }}
+        <input type="submit" value="Delete" class="btn btn-danger">
+        {{ form_end(delete_form) }}
+    </div>
+
+
+{% endblock %}

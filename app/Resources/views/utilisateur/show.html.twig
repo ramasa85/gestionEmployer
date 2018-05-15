@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ path('utilisateur_index') }}">Utilisateur</a>
+                </li>
+                <li class="breadcrumb-item active">show</li>
+            </ol>
+            <!-- Example DataTables Card-->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fa fa-table"></i>utilisateur</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <tbody>
+                            <tr>
+                                <th>Nomuser</th>
+                                <td>{{ utilisateur.nomUser }}</td>
+                            </tr>
+                            <tr>
+                                <th>Prenomuser</th>
+                                <td>{{ utilisateur.prenomUser }}</td>
+                            </tr>
+                            <tr>
+                                <th>Login</th>
+                                <td>{{ utilisateur.login }}</td>
+                            </tr>
+                            <tr>
+                                <th>Password</th>
+                                <td>{{ utilisateur.password }}</td>
+                            </tr>
+                            <tr>
+                                <th>Actions</th>
+                                <td><a href="{{ path('utilisateur_index') }}" class="btn btn-info">Back</a>
+                                    <a href="{{ path('utilisateur_edit', { 'id': utilisateur.id}) }}" class="btn btn-warning">Edit</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {{ form_start(delete_form) }}
+            <input type="submit" value="Delete" class="btn btn-danger">
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+
+{% endblock %}
