@@ -16,6 +16,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
      */
     public function indexAction()
     {
-        return $this->render('EmployerBundle:Home:index.html.twig');
+        return $this->render('EmployerBundle:home:index.html.twig');
     }
 }
