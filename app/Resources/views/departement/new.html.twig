@@ -2,12 +2,36 @@
 
 {% block stylesheets %}
 <style>
-    .error-message{
-        border:1px solid #000;
-        background-color: #999;
-        text-align: center;
-        font-size: 15px;
+    #dep label{
+        display: inline-block;
+        width: 100px;
+        text-align: right;
+    }
+    #dep_submit{
+        padding-left: 100px;
+    }
+    #dep div{
+        margin-top: 1em;
+    }
+    textarea{
+        vertical-align: top;
+        height: 5em;
+    }
+    .error{
         display: none;
+        margin-left: 10px;
+    }
+
+    .error_show{
+        color: red;
+        margin-left: 10px;
+    }
+    input.invalid, textarea.invalid{
+        border: 2px solid red;
+    }
+
+    input.valid, textarea.valid{
+        border: 2px solid green;
     }
 </style>
 {% endblock %}
@@ -17,16 +41,15 @@
             <div class="card card-login mx-auto mt-5">
                 <div class="card-header">New employer</div>
                 <div class="card-body">
-                    <form class="form-horizontal" id="form">
-                    <div class="form-group">
-                        {# Génération du label. #}
-                        {{ form_label(form.nomDep, "Non departement",{'label_attr': {'class': 'col-sm-6 control-label'}}) }}
-                        {# Génération de l'input. #}
-                        {{ form_widget(form.nomDep, {'attr': {'class': 'form-control'}},{'id': "nom"})  }}
-                        <span class="error-message">error</span>
-                    </div>
-                    <button type="submit" value="Ajouter"  id="formBtn" class="btn btn-primary btn-block" >Ajouter</button>
-
+                    <form class="form-horizontal" id="form"   action="">
+                        <div class="form-group">
+                            <label for="nomDep">Departement</label>
+                            <input class="form-control" type="text" id="button" name="nomDep" value="{{ departement.nomDep }}" required="required" autocomplete="nomDep" />
+                        </div>
+                        <div id="dep_submit">
+                            <button type="submit" class="btn btn-primary btn-block" >Ajouter</button>
+                            <span class="error">This field is required</span>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -37,20 +60,25 @@
 
 {% block javascripts %}
     <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="{{ asset('templates/vendor/jquery/jquery.min.js') }}"></script>
     <script>
-        $(document).ready(function() {
-            $('#form').on('submit', function(e) {
-                e.preventDefault();
-                alert('ok');
-                var noms = $( 'nom');
-                var valid =true;
-                if($("#nom").val() == " "){
-                    $("#noms").next(".error-message").fadeIn().text('Veuiller enter le nom du departement');
-                    valid = false;
-                }
-                return valid;
+        $(document).ready(function(){
+            $("#button").click(function(){
+                var nomDep=$("#nomDep").val();
+
+                $.ajax({
+                    url:'DepartementController.php',
+                    method:'POST',
+                    data:{
+                        nomDep:nomDep,
+                    },
+                    success:function(data){
+                        alert(data);
+                    }
+                });
+
 
             });
-        });
+        });S
     </script>
 {% endblock %}
