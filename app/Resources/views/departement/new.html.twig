@@ -17,7 +17,7 @@
             <div class="card card-login mx-auto mt-5">
                 <div class="card-header">New employer</div>
                 <div class="card-body">
-                    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                    <form class="form-horizontal" id="form">
                     <div class="form-group">
                         {# Génération du label. #}
                         {{ form_label(form.nomDep, "Non departement",{'label_attr': {'class': 'col-sm-6 control-label'}}) }}
@@ -25,9 +25,9 @@
                         {{ form_widget(form.nomDep, {'attr': {'class': 'form-control'}},{'id': "nom"})  }}
                         <span class="error-message">error</span>
                     </div>
-                    <input type="submit" value="Ajouter"  id="form" class="btn btn-primary btn-block" />
+                    <button type="submit" value="Ajouter"  id="formBtn" class="btn btn-primary btn-block" >Ajouter</button>
 
-                    {{ form_end(form) }}
+                    </form>
                 </div>
             </div>
             <a href="{{ path('departement_index') }}" class="btn btn-info">Back to the list</a>
@@ -35,12 +35,13 @@
 
 {% endblock %}
 
-{% block scripts %}
-    <script src="{{ asset('templates/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('jqueryScript/script.js') }}"></script>
+{% block javascripts %}
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#form').submit(function() {
+            $('#form').on('submit', function(e) {
+                e.preventDefault();
+                alert('ok');
                 var noms = $( 'nom');
                 var valid =true;
                 if($("#nom").val() == " "){
