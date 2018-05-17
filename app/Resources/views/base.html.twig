@@ -9,7 +9,9 @@
         <meta name="author" content="">
 
         <title>{% block title %}GestionEmployer{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+        {% endblock %}
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
         <title>SB Admin - Start Bootstrap Template</title>
@@ -100,24 +102,23 @@
                 </div>
             </div>
         </div>
-            {% block javascripts %}{% endblock %}
+            {% block javascripts %}
         <!-- Bootstrap core JavaScript-->
         <script src="{{ asset('templates/vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('templates/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <!-- Core plugin JavaScript-->
         <script src="{{ asset('templates/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
         <!-- Page level plugin JavaScript-->
-        <script src="{{ asset('templates/vendor/chart.js/Chart.min.js') }}"></script>
+        <!--<script src="{{ asset('templates/vendor/chart.js') }}"></script>-->
         <script src="{{ asset('templates/vendor/datatables/jquery.dataTables.js') }}"></script>
         <script src="{{ asset('templates/vendor/datatables/dataTables.bootstrap4.js') }}"></script>
         <!-- Custom scripts for all pages-->
         <script src="{{ asset('templates/js/sb-admin.min.js') }}"></script>
         <!-- Custom scripts for this page-->
         <script src="{{ asset('templates/js/sb-admin-datatables.min.js') }}"></script>
-        <script src="{{ asset('templates/js/sb-admin-charts.min.js') }}"></script>
+                <!--<script src="{{ asset('templates/js/sb-admin-charts.min.js') }}"></script>-->
 
-        <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
-        <script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+            {% endblock %}
     </div>
 
     </body>
