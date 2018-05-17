@@ -1,18 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <script>
+        $(document).ready(function() {
+// Submit form with id function.
+            $("#btn_id").click(function() {
+                var nomDep = $("#nomDep").val();
+                if (validation()) // Calling validation function.
+                {
+                    $("#form_id").submit(); // Form submission.
+                    alert(" nomDep : " + nomDep + " Form Submitted Successfully......");
+                }
+            });
+        });
+    </script>
         <div class="container">
             <div class="card card-login mx-auto mt-5">
                 <div class="card-header">New employer</div>
                 <div class="card-body">
-                    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                    {{ form_start(form, {'attr': {'class': 'form-horizontal'}},{'id': 'form_id'}) }}
                     <div class="form-group">
                         {# Génération du label. #}
-                        {{ form_label(form.nomDep, "Non departement", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+                        {{ form_label(form.nomDep, "Non departement",{'label_attr': {'class': 'col-sm-6 control-label'}}) }}
                         {# Génération de l'input. #}
                         {{ form_widget(form.nomDep, {'attr': {'class': 'form-control'}}) }}
                     </div>
-                    <input type="submit" value="Ajouter" class="btn btn-primary btn-block" />
+                    <input type="submit" value="Ajouter" id="btn_id" class="btn btn-primary btn-block" />
                     {{ form_end(form) }}
                 </div>
             </div>
