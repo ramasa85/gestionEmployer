@@ -5,7 +5,9 @@ namespace EmployerBundle\Controller;
 use EmployerBundle\Entity\Departement;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Reponse;
 
 /**
  * Departement controller.
@@ -39,7 +41,7 @@ class DepartementController extends Controller
      */
     public function newAction(Request $request)
     {
-        $departement = new Departement();
+       /* $departement = new Departement();
         $form = $this->createForm('EmployerBundle\Form\DepartementType', $departement);
         $form->handleRequest($request);
 
@@ -54,7 +56,32 @@ class DepartementController extends Controller
         return $this->render('departement/new.html.twig', array(
             'departement' => $departement,
             'form' => $form->createView(),
-        ));
+        ));*/
+        $departement = new Departement();
+        $form = $this->createForm('EmployerBundle\Form\DepartementType', $departement);
+        $form->handleRequest($request);
+
+        if ($request->isXMLHttpRequest()) {
+            $content = $request->getContent();
+            $em = $this->getDoctrine()->getManager();
+            $data = json_decode($content, true);
+            if (!empty($data)) {
+                /* $request->get('nomDep');*/
+                $departement->setNomDep($data->get('nomDep'));
+                $em->persist($departement);
+                $em->flush();
+
+                $this->redirectToRoute('departement_show', array('id' => $departement->getId()));
+
+            }
+            /*$response = new Response();*/
+            return new Response(json_encode(array('dataReceived' => $data)));
+        }
+
+        /*return new Response('Error!', 400);*/
+        return $this->render('departement/new.html.twig', array(
+            'departement' => $departement,
+            'form' => $form->createView(),));
     }
 
     /**

@@ -41,13 +41,13 @@
             <div class="card card-login mx-auto mt-5">
                 <div class="card-header">New employer</div>
                 <div class="card-body">
-                    <form class="form-horizontal" id="form"   action="">
+                    <form class="form-horizontal" id="form" >
                         <div class="form-group">
                             <label for="nomDep">Departement</label>
-                            <input class="form-control" type="text" id="button" name="nomDep" value="{{ departement.nomDep }}" required="required" autocomplete="nomDep" />
+                            <input class="form-control" type="text" id="nomDep" name="nomDep" value="{{ departement.nomDep }}" required="required" autocomplete="nomDep" />
                         </div>
                         <div id="dep_submit">
-                            <button type="submit" class="btn btn-primary btn-block" >Ajouter</button>
+                            <button type="submit" class="btn btn-primary btn-block" id="btn" >Ajouter</button>
                             <span class="error">This field is required</span>
                         </div>
                     </form>
@@ -59,24 +59,23 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!--< script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>-->
     <script src="{{ asset('templates/vendor/jquery/jquery.min.js') }}"></script>
     <script>
         $(document).ready(function(){
-            $("#button").click(function(){
+            $("#btn").click(function(){
                 var nomDep=$("#nomDep").val();
-
                 $.ajax({
-                    url:'departement_new',
-                    method:'POST',
-                    data:{
-                        nomDep:nomDep,
-                    },
-                    success:function(data){
-                        alert(data);
+                    type: 'POST',
+                    url: '{{ path('departement_new') }}',
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    data: {'nomDep' : nomDep},
+                    success: function(response) {
+                        console.log(response);
                     }
-                });
 
+                });
 
             });
         });
