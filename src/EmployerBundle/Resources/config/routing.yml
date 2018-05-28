@@ -1,0 +1,6 @@
+departement:
+    path:    /new
+    defaults: { _controller: EmployerBundle:Departement:new }
+    options:
+        expose: true
+

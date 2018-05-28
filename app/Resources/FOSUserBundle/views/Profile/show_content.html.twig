@@ -1,6 +1,29 @@
+{% extends 'base.html.twig' %}
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+{% block body %}
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i>Utilisateur</div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <tbody>
+                <tr>
+                    <th>Username</th>
+                    <td>
+                        <p>{{ user.username }}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>
+                        <p>{{ user.email }}</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+{% endblock %}

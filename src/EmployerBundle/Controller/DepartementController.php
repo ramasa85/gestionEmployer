@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Reponse;
+use Symfony\Component\HttpFoundation\JsonReponse;
 
 /**
  * Departement controller.
@@ -66,16 +66,18 @@ class DepartementController extends Controller
             $em = $this->getDoctrine()->getManager();
             $data = json_decode($content, true);
             if (!empty($data)) {
-                /* $request->get('nomDep');*/
-                $departement->setNomDep($data->get('nomDep'));
+                $nomDep = $request->request->get('nomDep');
+                /*$request->get('nomDep');*/
+                /*$departement->setNomDep($data);*/
                 $em->persist($departement);
                 $em->flush();
 
                 $this->redirectToRoute('departement_show', array('id' => $departement->getId()));
 
             }
-            /*$response = new Response();*/
-            return new Response(json_encode(array('dataReceived' => $data)));
+            /*$response = new Response();
+            return $response->getData(array('dataReceived' => $data));*/
+            return new JsonResponse($nomDep);
         }
 
         /*return new Response('Error!', 400);*/
