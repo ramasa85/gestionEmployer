@@ -1,6 +1,8 @@
 {% trans_default_domain 'FOSUserBundle' %}
 <div class="container">
     <div class="card card-login mx-auto mt-5">
+        <div class="card-header">Login</div>
+        <div class="card-body">
         <form action="{{ path("fos_user_security_check") }}" method="post">
             {% if csrf_token %}
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
@@ -14,11 +16,12 @@
 
             <input  class="btn btn-primary btn-block" type="submit" id="_submit" name="_submit" value="{{ 'Connexion'|trans }}" />
 
-            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-            <label for="remember_me">{{ 'Se souvenir'|trans }}</label><br/>
         </form>
         <div class="text-center">
-
+            <a class="d-block small mt-3" href="{{ path('fos_user_registration_register') }}">Nouveau Utilisateur</a>
+            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+            <label for="remember_me">{{ 'Se souvenir'|trans }}</label><br/>
+        </div>
         </div>
     </div>
 </div>

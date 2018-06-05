@@ -1,13 +1,50 @@
 {% extends '::base.html.twig'%}
-
 {% block body %}
-
-    <div class="fos_user_group_list">
-        <ul>
-            {% for group in groups %}
-                <li><a href="{{ path('fos_user_group_show', {'groupName': group.getName()} ) }}">{{ group.getName() }}</a></li>
-            {% endfor %}
-        </ul>
+    <div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('home_index') }}">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ path('user_index') }}">Les Utilisateurs</a>
+        </li>
+        <li class="breadcrumb-item active">liste</li>
+    </ol>
+    <!-- Example DataTables Card-->
+    <div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> La liste des Utilisateurs</div>
+    <div class="card-body">
+    <div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>email</th>
+            <th>Roles</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{% for role in user.roles %}
+                        {{ role }},
+                    {% endfor %}</td>
+                <td>
+                    <a href="{{ path('user_edit', {  'id': user.id }) }}" class="btn btn-warning">Modifier</a>
+                    <a href="{{ path('fos_user_profile_show', { 'id': user.id }) }}" class="btn btn-danger">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
     </div>
-
+    </div>
+    </div>
+        <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary">Nouveau Utilisateur</a>
+    </div>
 {% endblock %}

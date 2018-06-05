@@ -38,8 +38,8 @@
                                     <td>{{ employer.departement }}</td>
                                     <td>{{ employer.utilisateur }}</td>
                                     <td>
-                                        <a href="{{ path('employer_show', { 'id': employer.id }) }}" class="btn btn-info">show</a>
-                                        <a href="{{ path('employer_edit', { 'id': employer.id }) }}" class="btn btn-warning">edit</a>
+                                        <a href="{{ path('employer_edit', { 'id': employer.id }) }}" class="btn btn-warning">Modifier</a>
+                                        <a href="{{ path('employer_delete', { 'id': employer.id }) }}" class="btn btn-danger">Supprimer</a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <a href="{{ path('employer_new') }}" class="btn btn-primary">new employer</a>
+            <a href="{{ path('employer_new') }}" class="btn btn-primary">Nouveau employer</a>
         </div>
 
 {% endblock %}

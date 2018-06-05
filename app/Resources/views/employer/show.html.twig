@@ -43,18 +43,14 @@
                                 <th>Utilisateur</th>
                                 <td>{{ employer.utilisateur}}</td>
                             </tr>
-                            <tr>
-                                <th>Action</th>
-                                <td><a href="{{ path('employer_edit', { 'id': employer.id }) }}" class="btn btn-warning">Edit</a>
-                                <a href="{{ path('employer_index') }}" class="btn btn-primary">Back</a></td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
             {{ form_start(delete_form) }}
-            <input type="submit" value="Delete" class="btn btn-danger">
+            <input type="submit" value="Supprimer" class="btn btn-danger">
+            <a href="{{ path('employer_index') }}" class="btn btn-primary">Annuler</a></td>
             {{ form_end(delete_form) }}
         </div>
 

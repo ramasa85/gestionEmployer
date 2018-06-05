@@ -21,8 +21,6 @@
                                 <th>Departement</th>
                                 <td>
                                     {{ departement.nomDep }}
-                                    <a href="{{ path('departement_edit', { 'id': departement.id }) }}" class="btn btn-warning">Edit</a>
-                                    <a href="{{ path('departement_index') }}" class="btn btn-primary">Back</a>
                                 </td>
                             </tr>
                             </tbody>
@@ -31,7 +29,8 @@
                 </div>
             </div>
             {{ form_start(delete_form) }}
-            <input type="submit" value="Delete" class="btn btn-danger">
+            <input type="submit" value="Supprimer" class="btn btn-danger">
+            <a href="{{ path('departement_index') }}" class="btn btn-primary">Annuler</a>
             {{ form_end(delete_form) }}
         </div>
 

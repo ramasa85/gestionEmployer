@@ -22,9 +22,8 @@ class UserController extends Controller
     {
         $userManager = $this->get('fos_user.user_manager');
         $users = $userManager->findUsers();
-
-        return $this->render('EmployerBundle:User:index.html.twig', array(
-            'users' =>   $users
+        return $this->render('user/index.html.twig', array(
+            'users' => $users,
         ));
 
     }
@@ -50,10 +49,28 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/edit")
+     * @Route("/{id}/edit", name="user_edit")
+     * 
      */
-    public function editAction()
+    public function editAction(Request $request, User $id)
     {
+        $editForm = $this->createForm('EmployerBundle\Form\UserType', $id);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($id);
+            $em->flush();
+
+            return $this->redirectToRoute('user_index');
+        }
+
+        return $this->render('user/edit.html.twig', array(
+            'article' => $id,
+            'edit_form' => $editForm->createView(),
+
+        ));
+
         return $this->render('EmployerBundle:User:edit.html.twig', array(
             // ...
         ));

@@ -30,8 +30,8 @@
                                 <tr>
                                     <td>{{ departement.nomDep }}</td>
                                     <td>
-                                        <a href="{{ path('departement_show', { 'id': departement.id }) }}" class="btn btn-info">show</a>
-                                        <a href="{{ path('departement_edit', {  'id': departement.id }) }}" class="btn btn-warning">edit</a>
+                                        <a href="{{ path('departement_edit', {  'id': departement.id }) }}" class="btn btn-warning">Modifier</a>
+                                        <a href="{{ path('departement_delete', { 'id': departement.id }) }}" class="btn btn-danger">Supprimer</a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -40,6 +40,6 @@
                     </div>
                 </div>
             </div>
-            <a href="{{ path('departement_new') }}" class="btn btn-primary">new departement</a>
+            <a href="{{ path('departement_new') }}" class="btn btn-primary">Nouveau departement</a>
         </div>
 {% endblock %}
