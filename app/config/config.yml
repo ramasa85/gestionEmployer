@@ -73,6 +73,8 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: EmployerBundle\Entity\User
+    group:
+        group_class: EmployerBundle\Entity\Group
     from_email:
         address: "2164412@supinfo.com"
         sender_name: "TutoFOSUserBundle"

@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonReponse;
+use Symfony\Component\HttpFoundation\Reponse;
 
 /**
  * Departement controller.
@@ -61,23 +62,19 @@ class DepartementController extends Controller
         $form = $this->createForm('EmployerBundle\Form\DepartementType', $departement);
         $form->handleRequest($request);
 
+        $em = $this->getDoctrine()->getManager();
+        $departement = $em->getRepository('EmployerBundle:Departement')->findOneBy($em);
         if ($request->isXMLHttpRequest()) {
-            $content = $request->getContent();
-            $em = $this->getDoctrine()->getManager();
-            $data = json_decode($content, true);
-            if (!empty($data)) {
                 $nomDep = $request->request->get('nomDep');
                 /*$request->get('nomDep');*/
-                /*$departement->setNomDep($data);*/
+                //$departement->setNomDep($nomDep);
+                $departement ->SetNomDep($nomDep);
                 $em->persist($departement);
                 $em->flush();
 
-                $this->redirectToRoute('departement_show', array('id' => $departement->getId()));
-
-            }
-            /*$response = new Response();
-            return $response->getData(array('dataReceived' => $data));*/
-            return new JsonResponse($nomDep);
+            /* return new JsonResponse($nomDep);*/
+            $response = new Reponse(json_encode(array('dataReceived' => $departement)));
+            return  $response;
         }
 
         /*return new Response('Error!', 400);*/

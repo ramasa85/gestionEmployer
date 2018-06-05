@@ -1,40 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
-<style>
-    #dep label{
-        display: inline-block;
-        width: 100px;
-        text-align: right;
-    }
-    #dep_submit{
-        padding-left: 100px;
-    }
-    #dep div{
-        margin-top: 1em;
-    }
-    textarea{
-        vertical-align: top;
-        height: 5em;
-    }
-    .error{
-        display: none;
-        margin-left: 10px;
-    }
-
-    .error_show{
-        color: red;
-        margin-left: 10px;
-    }
-    input.invalid, textarea.invalid{
-        border: 2px solid red;
-    }
-
-    input.valid, textarea.valid{
-        border: 2px solid green;
-    }
-</style>
-{% endblock %}
 {% block body %}
 
         <div class="container">
@@ -43,12 +8,13 @@
                 <div class="card-body">
                     <form class="form-horizontal" id="form" >
                         <div class="form-group">
-                            <label for="nomDep">Departement</label>
-                            <input class="form-control" type="text" id="nomDep" name="nomDep" value="{{ departement.nomDep }}" required="required" autocomplete="nomDep" />
+                            {# Génération du label. #}
+                            {{ form_label(form.nomDep, "Departement", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+                            {# Génération de l'input. #}
+                            {{ form_widget(form.nomDep, {'id': 'nomDep', 'attr': {'class': 'form-control'}}) }}
                         </div>
                         <div id="dep_submit">
                             <button type="submit" class="btn btn-primary btn-block" id="btn" >Ajouter</button>
-                            <span class="error">This field is required</span>
                         </div>
                     </form>
                 </div>
@@ -68,7 +34,7 @@
                 var nomDep=$("#nomDep").val();
                 $.ajax({
                     type: 'POST',
-                    url: Routing.generate('departement_new'),
+                    url: "{{ path('departement_new') }}",
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
 
